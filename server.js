@@ -1,21 +1,23 @@
 const express = require('express');
 const path = require('path');
-const api = require ('./routes/index.js')
-
 const PORT = 3001;
 const app = express();
 
 app.use(express.static('public'));
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
+
+
 // GET Route for homepage
-app.get('/', (req, res) => 
+app.get('/index', (req, res) => 
 res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
 
 // GET Route for notes page
-app.get('/', (req, res)=>
+app.get('/notes', (req, res)=>
 res.sendFile(path.join(__dirname, '/public/notes.html'))
-)
+)   
 
 
 
